@@ -7,4 +7,4 @@ ipython_notebook_spark.out
 **/derby.log
 **/*.zip
 **/datasets/
-
+**/models/
