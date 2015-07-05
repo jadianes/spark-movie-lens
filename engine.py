@@ -54,7 +54,7 @@ class RecommendationEngine:
         """Add additional movie ratings in the format (user_id, movie_id, rating)
         """
         # Convert ratings to an RDD
-        new_ratings_RDD = self.sc.parallelize(user_ratings)
+        new_ratings_RDD = self.sc.parallelize(ratings)
         # Add new ratings to the existing ones
         self.ratings_RDD = self.ratings_RDD.union(new_ratings_RDD)
         # Re-compute movie ratings count
@@ -84,7 +84,7 @@ class RecommendationEngine:
         return ratings
 
     def __init__(self, sc, dataset_path):
-        """Init the recommendation engine given a Spark context
+        """Init the recommendation engine given a Spark context and a dataset path
         """
 
         logger.info("Starting up the Recommendation Engine: ")
