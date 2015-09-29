@@ -8,9 +8,9 @@ In any case, the use of this algorithm with this dataset is not new (you can [Go
 
 It is the second part of the tutorial the one that explains how to use Python/Flask for building a web-service on top of Spark models. By doing so, you will be able to develop a complete **on-line movie recommendation service**.
 
-## Part I: [Building the recommender](https://github.com/jadianes/spark-py-notebooks/blob/master/movie-lens-recommender/notebooks/building-recommender.ipynb)  
+## Part I: [Building the recommender](notebooks/building-recommender.ipynb)  
 
-## Part II: [Building and running the web service](https://github.com/jadianes/spark-py-notebooks/blob/master/movie-lens-recommender/notebooks/online-recommendations.ipynb)  
+## Part II: [Building and running the web service](notebooks/online-recommendations.ipynb)  
 
 ## Quick start  
 
@@ -19,6 +19,6 @@ The file `server/server.py` starts a [CherryPy](http://www.cherrypy.org/) server
 web server wrapping a Spark-based `engine.py` context. Through its API we can 
 perform on-line movie recommendations.  
 
-Please, refer the the [second notebook](https://github.com/jadianes/spark-py-notebooks/blob/master/movie-lens-recommender/notebooks/online-recommendations.ipynb) for detailed instructions on how to run and use the service.  
+Please, refer the the [second notebook](notebooks/online-recommendations.ipynb) for detailed instructions on how to run and use the service.  
 
 
