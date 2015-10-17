@@ -22,3 +22,7 @@ perform on-line movie recommendations.
 Please, refer the the [second notebook](notebooks/online-recommendations.ipynb) for detailed instructions on how to run and use the service.  
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jadianes/spark-movie-lens/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
