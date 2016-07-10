@@ -119,4 +119,4 @@ class RecommendationEngine:
             self.model = MatrixFactorizationModel.load(self.sc,'/tmp/ALS.model')
         else:
             self.__train_model()
-            self.save(self.sc,'/tmp/ALS.model')
+            self.model.save(self.sc,'/tmp/ALS.model')
