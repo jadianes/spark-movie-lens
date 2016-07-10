@@ -1,5 +1,5 @@
 import os
-from pyspark.mllib.recommendation import ALS
+from pyspark.mllib.recommendation import ALS, MatrixFactorizationModel 
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -34,7 +34,6 @@ class RecommendationEngine:
         logger.info("Training the ALS model...")
         self.model = ALS.train(self.ratings_RDD, self.rank, seed=self.seed,
                                iterations=self.iterations, lambda_=self.regularization_parameter)
-        self.model.save(self.sc, '/tmp/ALS.model')
         logger.info("ALS model built!")
 
 
@@ -116,4 +115,8 @@ class RecommendationEngine:
         self.seed = 5L
         self.iterations = 10
         self.regularization_parameter = 0.1
-        self.__train_model() 
+        if os.isfile('/tmp/ALS.model'):
+            self.model = MatrixFactorizationModel.load(self.sc,'/tmp/ALS.model')
+        else:
+            self.__train_model()
+            self.save(self.sc,'/tmp/ALS.model')
