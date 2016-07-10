@@ -1,6 +1,6 @@
 export SPARK_MOVIE_LENS_DIR="file:/tmp"
 
-SPARK_HOME=~/spark-1.3.1-bin-hadoop2.6
+SPARK_HOME=~/spark-2.0.0-preview-bin-hadoop2.6
 
 SPARK_MASTER=spark://169.254.206.2:7077
 

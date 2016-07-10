@@ -34,6 +34,7 @@ class RecommendationEngine:
         logger.info("Training the ALS model...")
         self.model = ALS.train(self.ratings_RDD, self.rank, seed=self.seed,
                                iterations=self.iterations, lambda_=self.regularization_parameter)
+        self.model.save(self.sc, '/tmp/ALS.model')
         logger.info("ALS model built!")
 
 
