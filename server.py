@@ -35,12 +35,13 @@ def run_server(app):
  
 if __name__ == "__main__":
     # Init spark context and load libraries
+    dataset_path = os.path.join(os.environ['SPARK_MOVIE_LENS_DIR'], 'datasets', 'ml-latest')
     sc = init_spark_context()
-    dataset_path = os.path.join('datasets', 'ml-latest')
     app = create_app(sc, dataset_path)
- 
-    # start cherrypy server
-    #run_server(app)
 
     # start flask server
-    app.run()
+    #app.run()
+ 
+    # start cherrypy server
+    run_server(app)
+
