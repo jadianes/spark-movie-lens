@@ -39,6 +39,8 @@ if __name__ == "__main__":
     dataset_path = os.path.join('datasets', 'ml-latest')
     app = create_app(sc, dataset_path)
  
-    # start web server
-    run_server(app)
+    # start cherrypy server
+    #run_server(app)
 
+    # start flask server
+    app.run()
