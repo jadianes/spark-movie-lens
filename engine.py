@@ -115,7 +115,7 @@ class RecommendationEngine:
         self.seed = 5L
         self.iterations = 10
         self.regularization_parameter = 0.1
-        if os.isfile('/tmp/ALS.model'):
+        if os.path.isfile('/tmp/ALS.model'):
             self.model = MatrixFactorizationModel.load(self.sc,'/tmp/ALS.model')
         else:
             self.__train_model()
