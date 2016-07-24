@@ -77,7 +77,7 @@ class RecommendationEngine:
         """Recommends up to movies_count top unrated movies to user_id
         """
         # Get pairs of (userID, movieID) for user_id unrated movies
-        user_unrated_movies_rdd = self.ratings_RDD.filter(lambda rating: not rating[0] == user_id)\
+        user_unrated_movies_RDD = self.ratings_RDD.filter(lambda rating: not rating[0] == user_id)\
                                                  .map(lambda x: (user_id, x[1])).distinct()
         # Get predicted ratings
         ratings = self.__predict_ratings(user_unrated_movies_RDD).filter(lambda r: r[2]>=25).takeOrdered(movies_count, key=lambda x: -x[1])
