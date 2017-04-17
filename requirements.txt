@@ -1,0 +1,3 @@
+CherryPy==10.2.1
+Flask==0.12.1
+PasteScript==2.0.2
