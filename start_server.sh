@@ -1,1 +1,1 @@
-~/spark-1.3.1-bin-hadoop2.6/bin/spark-submit --master spark://169.254.206.2:7077 --total-executor-cores 14 --executor-memory 6g server.py 
+~/spark-2.0.0-bin-hadoop2.7/bin/spark-submit --master spark://192.168.43.74:5435 server.py 
