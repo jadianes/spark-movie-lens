@@ -13,6 +13,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 class content:
 
+
+
+         
+
     def get_recommendations(self,k, cosine_sim):
 
         # Get the index of the movie that matches the title
@@ -75,6 +79,10 @@ class content:
         movies['genres'].replace('\|', ' ',regex=True,inplace=True)
         movies['genres'].head()
         # len(movies)
+
+
+
+
         # tfidf = CountVectorizer(stop_words="english")
         # #Replace NaN with an empty string
         # movies['genres'] = movies['genres'].fillna('')
@@ -111,6 +119,9 @@ class content:
         my_df['genres'] = my_df['genres'].apply(self.clean_data)
         my_df['soup'] = my_df.apply(self.create_soup, axis=1)
 
+
+
+
         movies['soup'].head()
         # type(genre)
         # type(movies['soup'])
@@ -127,7 +138,7 @@ class content:
 
         print(x)
 
-        x = [value for key, value in x.iteritems()]
+        x = [value for key, value in x.items()]
         print(x)
 
         # count_genre = count.fit_transform(x)

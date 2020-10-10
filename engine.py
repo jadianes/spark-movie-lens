@@ -3,10 +3,11 @@ import time
 from pyspark.mllib.recommendation import ALS, MatrixFactorizationModel, Rating
 import numpy as np
 from numpy import linalg as LA
-import logging,urllib2,csv
+import logging,urllib,csv
 from pyspark.sql import functions as F
 import csv,array
 import subprocess
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -135,11 +136,13 @@ class RecommendationEngine:
         # Calculates the nearest 20 movies for the given Movie ID
         logger.info("Inside Movie Recommend...")
         new_product_feature_RDD = self.product_feature_RDD.join(self.links_titles_RDD)
+
         complete_itemFactor = np.asarray(self.product_feature_RDD.lookup(movie_id))[0][0][0]
         
         complete_sims = new_product_feature_RDD.map(lambda products:(products[1][0][0][1],\
                                             cosineSimilarity(np.asarray(products[1][0][0][0]), complete_itemFactor),\
                                                    products[0],products[1][0][1][0],products[1][0][1][1],products[1][1]))
+        # print(complete_sims.shape)
 
         complete_sortedSims = complete_sims.filter(lambda r: r[3]>=5).takeOrdered(21, key=lambda x: -x[1])
         
@@ -147,8 +150,7 @@ class RecommendationEngine:
         df4 = pd.DataFrame(complete_sortedSims)
         print(df4)
         print("Item based "+str(time.time()-start))
-        return df4    
-
+        return df4   
     
 
 
@@ -163,7 +165,9 @@ class RecommendationEngine:
         # Load item ratings data for later use
         logger.info("Loading Model Features...")
         features_file_path = os.path.join(dataset_path,'item_based_features')
+        
         self.product_feature_RDD = self.sc.pickleFile(features_file_path)
+
         
         logger.info("Loading Ratings data...")
         ratings_file_path = os.path.join(dataset_path, 'ratings.csv')
@@ -194,7 +198,7 @@ class RecommendationEngine:
 
         # Train the model
         self.rank = 8
-        self.seed = 5L
+        self.seed = 5
         self.iterations = 12
         self.regularization_parameter = 0.1
         self.__train_model() 

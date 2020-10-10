@@ -3,7 +3,8 @@ from flask_mysqldb import MySQL,MySQLdb
 from flask import current_app as app
 from engine import RecommendationEngine
 from collections import OrderedDict
-import ast,json,urllib,logging
+import ast,json,logging
+import urllib.request as ur
 from contentbased import content
 import time
 logging.basicConfig(level=logging.INFO)
@@ -28,7 +29,7 @@ def login():
     if request.method == "POST":
         
         userDetails = request.form
-        if userDetails['btn'] == "submit":  
+        if userDetails['btn'] == "submit":
 
             ID = userDetails['User_ID']
             Password = userDetails['password_1'].encode('utf-8')
@@ -55,8 +56,7 @@ def login():
            
             if len(user) > 0:
                 if Password == user["Password"].encode('utf-8'):
-                    
-
+    
                     session['Name'] = user["Name"]
                     session['ID'] = ID
                     return redirect(url_for('main.index',user_id=user["ID"]))
@@ -79,7 +79,7 @@ def new(user_id,Value1,Value2):
     data1=ast.literal_eval(t)
     print(data1)
     new_user=1
-    return render_template('index.html' ,data1=data1 ,new_user=new_user, user_id=user_id , active='home',data={})
+    return render_template('index.html' ,data1=data1, new_user=new_user, user_id=user_id , active='home',data={})
 
 
 @main.route("/ratings/<int:user_id>/<int:movie_id>/<int:imd_id>", methods=["GET" , "POST"])
@@ -88,7 +88,7 @@ def movie_ratings1(user_id, movie_id, imd_id):
         imd_id = '{:0>7}'.format(imd_id)
         logger.debug("User %s rating requested for movie %s", user_id, movie_id)
         url = " http://www.omdbapi.com/?i=tt"+imd_id+"&apikey=f36552d0"
-        response = urllib.urlopen(url)
+        response = ur.urlopen(url)
         u = json.loads(response.read())
         x = (float(u['imdbRating'])/10)*100
         rate = float(u['imdbRating'])/2
@@ -124,7 +124,6 @@ def index(user_id):
     t = ratings.to_json(orient='index')
     data=ast.literal_eval(t)
     data = OrderedDict(sorted(data.items(), key= lambda x: x[1]['2'], reverse=True))
-
     return render_template('index.html' ,data=data ,user_id=user_id , active='home' , data1 ={})
     
 
@@ -142,7 +141,7 @@ def top_ratings(user_id, count):
 def exturl(imd_id):
     imd_id = '{:0>7}'.format(imd_id)
     url = " http://www.omdbapi.com/?i=tt"+imd_id+"&apikey=f36552d0"
-    response = urllib.urlopen(url)
+    response = ur.urlopen(url)
     ux = json.loads(response.read())
     print("Poster url"+ux['Poster'])
     return redirect(ux['Poster'])
@@ -151,7 +150,7 @@ def exturl(imd_id):
 def exturl1(imd_id):
     imd_id = '{:0>7}'.format(imd_id)
     url = " http://www.omdbapi.com/?i=tt"+imd_id+"&apikey=f36552d0"
-    response = urllib.urlopen(url)
+    response = ur.urlopen(url)
     ux = json.loads(response.read())
     return ux
 
@@ -168,7 +167,7 @@ def movie_ratings(user_id, movie_id, imd_id, rate):
         data=ast.literal_eval(t)
         data = OrderedDict(sorted(data.items(), key= lambda x: x[1]['2'], reverse=True))
         url = " http://www.omdbapi.com/?i=tt"+data['0']['4']+"&apikey=f36552d0"
-        response = urllib.urlopen(url)
+        response = ur.urlopen(url)
         u = json.loads(response.read())
         x = (data['0']['2']/5)*100
         
