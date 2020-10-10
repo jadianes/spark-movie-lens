@@ -12,6 +12,8 @@ It is the second part of the tutorial the one that explains how to use Python/Fl
 
 ## Part II: [Building and running the web service](notebooks/online-recommendations.ipynb)  
 
+## Part III: [Pretraining model for online recommendation ( Item based collaborative filtering )](item_based_collaborative_filtering_colab/item_based_movie_recommender.ipynb)  
+
 # Installation
 Prerequisite for this project is to install JAVA in your linux system 
 ```
@@ -75,7 +77,7 @@ Download the dataset by running `download_dataset.sh`.
 ###### Move item_based_features folder to `/datasets/ml-latest`.
 For the convenience I have replaced `/datasets/ml-latest/ratings.csv` by `/datasets/ml-latest-small/ratings.csv` to run locally.
 
-# Instructions to run Application:
+# Instructions to run Application
   - Make sure Folder `[spark-3.0.1-bin-hadoop2.7]` in in home directory. 
   - Go to the Network settigs: Find the IPv4 Address.
   - Go to `home/<username>/spark-3.0.1-bin-hadoop2.7/conf` and make a copy of `spark-env.sh.template` file and rename it to `spark-env.sh`
@@ -97,7 +99,7 @@ Please, refer the the [second notebook](notebooks/online-recommendations.ipynb) 
 
 ## Contributing
 
-Contributions are welcome! Raise a PR :)
+Contributions are welcome! Raise a PR :wink:
 
 ## License
 
