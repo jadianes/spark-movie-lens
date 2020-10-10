@@ -2,9 +2,9 @@
 
 This Apache Spark tutorial will guide you step-by-step into how to use the [MovieLens dataset](http://grouplens.org/datasets/movielens/) to build a movie recommender using [collaborative filtering](https://en.wikipedia.org/wiki/Recommender_system#Collaborative_filtering) with [Spark's Alternating Least Saqures](https://spark.apache.org/docs/latest/mllib-collaborative-filtering.html) implementation. It is organised in two parts. The first one is about getting and parsing movies and ratings data into Spark RDDs. The second is about building and using the recommender and persisting it for later use in our on-line recommender system.    
 
-This tutorial can be used independently to build a movie recommender model based on the MovieLens dataset. Most of the code in the first part, about how to use ALS with the public MovieLens dataset, comes from my solution to one of the exercises proposed in the [CS100.1x Introduction to Big Data with Apache Spark by Anthony D. Joseph on edX](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x), that is also [**publicly available since 2014 at Spark Summit**](https://databricks-training.s3.amazonaws.com/movie-recommendation-with-mllib.html). Starting from there, I've added with minor modifications to use a larger dataset, then code about how to store and reload the model for later use, and finally a web service using Flask. 
+This tutorial can be used independently to build a movie recommender model based on the MovieLens dataset. Most of the code in the first part, about how to use ALS with the public MovieLens dataset, comes from my solution to one of the exercises proposed in the [CS100.1x Introduction to Big Data with Apache Spark by Anthony D. Joseph on edX](https://www.edx.org/course/introduction-big-data-apache-spark-uc-berkeleyx-cs100-1x). Starting from there, I've added different techniques with modifications to use a larger dataset, then code about how to store and reload the model for later use, and finally a web service using Flask. 
 
-In any case, the use of this algorithm with this dataset is not new (you can [Google about it](https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=movielens%20dataset%20collaborative%20filtering)), and this is because we put the emphasis on ending up with a usable model in an on-line environment, and how to use it in different situations. But I truly got inspired by solving the exercise proposed in that course, and I highly recommend you to take it. There you will learn not just ALS but many other Spark algorithms.  
+In any case, the use of this algorithm with this dataset is not new (you can [Google about it](https://www.google.com/search?ei=tJSAX5WYC6Se4-EPlc6z-AU&q=movielens+dataset+recommender+system&oq=movielens+dataset+recommender+system&gs_lcp=CgZwc3ktYWIQAzIECAAQRzIECAAQRzIECAAQRzIECAAQRzIECAAQRzIECAAQRzIECAAQRzIECAAQR1AAWABghTloAHACeACAAQCIAQCSAQCYAQCqAQdnd3Mtd2l6yAEIwAEB&sclient=psy-ab&ved=0ahUKEwiVwqno-6fsAhUkzzgGHRXnDF8Q4dUDCA0&uact=5)), and this is because we put the emphasis on ending up with a usable model in an on-line environment, and how to use it in different situations. But I truly got inspired by solving the exercise proposed in that course, and I highly recommend you to take it. There you will learn not just ALS but many other Spark algorithms.  
 
 It is the second part of the tutorial the one that explains how to use Python/Flask for building a web-service on top of Spark models. By doing so, you will be able to develop a complete **on-line movie recommendation service**.
 
@@ -12,45 +12,93 @@ It is the second part of the tutorial the one that explains how to use Python/Fl
 
 ## Part II: [Building and running the web service](notebooks/online-recommendations.ipynb)  
 
-## Quick start  
+# Installation
+Prerequisite for this project is to install JAVA in your linux system 
+```
+sudo apt-get install openjdk-8-jdk-headless
+```
+You must have Python 3.6+ installed in your system. Since this is upgraded version of the project. You can prefer older version of this project here. 
+###### Download the latest version of Apache Spark form the official site. I'll recommend you to use the same version which I am using for painless journey.  
+```
+wget -q https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
+```
+###### Extarct this folder and move it to the Home directory. 
 
-The file `server/server.py` starts a [CherryPy](http://www.cherrypy.org/) server running a 
-[Flask](http://flask.pocoo.org/) `app.py` to start a RESTful
-web server wrapping a Spark-based `engine.py` context. Through its API we can 
-perform on-line movie recommendations.  
+Clone this repository:
+```
+git clone https://github.com/Weirdolucifer/spark-movie-lens
+```
+If you don't have installed pip, use pip3 for installation 
+```
+sudo apt-get install python3-pip
+```
+Set up a virtual environment and activate it to avoid dependency issues.
+```
+mkvirtualenv venv
+workon venv
+```
+Install default-libmysqlclient-dev for flask-mysqldb:
+```
+sudo apt install default-libmysqlclient-dev
+```
+Install the required dependencies using the following command
+```
+pip3 install -r requirements.txt
+```
+MySql database setup:
+Here, I have removed the password from mysql login as root. You can set your own password. I created the database and table will be used for the application.
+```
+mysql -u root -p;
+
+mysql> CREATE DATABASE flaskapp;
+mysql> USE mysql;
+mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+mysql> FLUSH PRIVILEGES;
+
+mysql> USE flaskapp;
+mysql> CREATE TABLE `users` (
+  `ID` int(20) NOT NULL,
+  `Password` char(60) DEFAULT NULL,
+  `Name` varchar(40) DEFAULT NULL,
+  `Genre1` varchar(40) DEFAULT NULL,
+  `Genre2` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+mysql> exit;
+
+mysql -u root;
+```
+###### Make Sure your MySql server keep running. 
+
+# Instructions to run Application:
+  - Make sure Folder `[spark-3.0.1-bin-hadoop2.7]` in in home directory. 
+  - Go to the Network settigs: Find the IPv4 Address.
+  - Go to `home/<username>/spark-3.0.1-bin-hadoop2.7/conf` and make a copy of `spark-env.sh.template` file and rename it to `spark-env.sh`
+  - Add `SPARK_MASTER_PORT=5435` ,`SPARK_MASTER_HOST=<Your IPv4 Address>` in `spark-env.sh` file.
+  - Go to the project folder and find `server.py` file and update `'server.socket_host': '<Your IPv4 Address>'`.
+  - The file `server/server.py` starts a [CherryPy](http://www.cherrypy.org/) server running a [Flask](http://flask.pocoo.org/) `app.py` to start a RESTful web server wrapping a Spark-based `engine.py` context. Through its API we can perform on-line movie recommendations.  
+##### If you are not using distributed feature of spark:
+  - Update `start-server.sh` with `~/spark-3.0.1-bin-hadoop2.7/bin/spark-submit server.py`
+  - Run `./start-server.sh`. You'll get the server link at the end of execution.
+      
+##### If you are using distributed feature of the spark:
+  - Go to `home/<username>/spark-3.0.1-bin-hadoop2.7/conf` and run `start-master.sh` file (master node).
+  - After that you can initiate slave process in other systems having same structure by running `start-slave.sh <MASTER'S_IPv4_ADDRESS>`
+  - Then run `start-server.sh` in slave systems by updatig `start-server.sh` with `~/spark-3.0.1-bin-hadoop2.7/bin/spark-submit --master spark://<MASTER'S_IPv4_ADDRESS:5435> server.py` 
 
 Please, refer the the [second notebook](notebooks/online-recommendations.ipynb) for detailed instructions on how to run and use the service.  
 
+
+
 ## Contributing
 
-Contributions are welcome!  For bug reports or requests please [submit an issue](https://github.com/jadianes/spark-movie-lens/issues).
-
-## Contact  
-
-Feel free to contact me to discuss any issues, questions, or comments.
-
-* Twitter: [@ja_dianes](https://twitter.com/ja_dianes)
-* GitHub: [jadianes](https://github.com/jadianes)
-* LinkedIn: [jadianes](https://www.linkedin.com/in/jadianes)
-* Website: [jadianes.me](http://jadianes.me)
+Contributions are welcome! Raise a PR :)
 
 ## License
 
-This repository contains a variety of content; some developed by Jose A. Dianes, and some from third-parties.  The third-party content is distributed under the license provided by those parties.
+The parent repository of this project contains the basic content, which was developed by Jose A. Dianes (2016).
+This project is extended with rich modules by Avinash Yadav.
 
-The content developed by Jose A. Dianes is distributed under the following license:
-
-    Copyright 2016 Jose A Dianes
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
+The content developed by Avinash Yadav 
+    
+![Report Card](https://github-readme-stats.vercel.app/api/pin?username=weirdolucifer&repo=spark-movie-lens&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
