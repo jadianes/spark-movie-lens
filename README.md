@@ -39,7 +39,7 @@ It is the second part of the tutorial the one that explains how to use Python/Fl
 
 ### Part II: [Building and running the web service](notebooks/online-recommendations.ipynb)  
 
-### Part III: [Pretraining model for online recommendation ( Item based collaborative filtering )](item_based_collaborative_filtering_colab/item_based_movie_recommender.ipynb)  
+### Part III: [Pretraining model for online recommendation ( Item based collaborative filtering)](item_based_collaborative_filtering_colab/item_based_movie_recommender.ipynb)  
 
 # Installation Guide
 Prerequisite for this project is to install JAVA in your linux system 
