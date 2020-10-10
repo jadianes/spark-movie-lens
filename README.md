@@ -70,6 +70,11 @@ mysql -u root;
 ```
 ###### Make Sure your MySql server keep running. 
 
+# Data Set
+Download the dataset by running `download_dataset.sh`.
+###### Move item_based_features folder to `/datasets/ml-latest`.
+For the convenience I have replaced `/datasets/ml-latest/ratings.csv` by `/datasets/ml-latest-small/ratings.csv` to run locally.
+
 # Instructions to run Application:
   - Make sure Folder `[spark-3.0.1-bin-hadoop2.7]` in in home directory. 
   - Go to the Network settigs: Find the IPv4 Address.
