@@ -46,7 +46,7 @@ Prerequisite for this project is to install JAVA in your linux system
 ```
 sudo apt-get install openjdk-8-jdk-headless
 ```
-You must have Python 3.6+ installed in your system. Since this is upgraded version of the project. You can prefer older version of this project here. 
+You must have Python 3.6+ installed in your system. Since this is upgraded version of the project. You can prefer older version of this project [here](https://github.com/Weirdolucifer/spark-movie-lens/tree/v0.1.0). 
 ###### Download the latest version of Apache Spark form the official site. I'll recommend you to use the same version which I am using for painless journey.  
 ```
 wget -q https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
