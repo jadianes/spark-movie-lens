@@ -1,0 +1,31 @@
+            <header class="site-header">
+				<div class="container">
+					<a href="/" id="branding">
+						<img src="{{ url_for('static', filename='images/logo.png') }}" alt="" class="logo">
+						<div class="logo-copy">
+							<h1 class="site-title">MovieRec</h1>
+							<small class="site-description">The best recommender</small>
+						</div>
+					</a> <!-- #branding -->
+
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item {% if active=='home' %}current-menu-item{%endif %} "><a href="{{ url_for('main.index',user_id=user_id) }}">Home</a></li>
+							
+							<li class="menu-item {% if active=='review' %}current-menu-item{%endif %} "><a href="{{ url_for('main.top_ratings',user_id=user_id , count=24) }}">Movie reviews</a></li>							
+							{% if session['Name'] %}
+							<li class="menu-item {% if active=='logout' %}current-menu-item{%endif %} "><a href="{{ url_for('main.logout',user_id=user_id) }}">Logout</a></li>
+							
+							<li class="menu-item"><a href="#">Hii {{session['Name'] }}</a> </li>
+						    {% else %}
+						    <li class="menu-item {% if active=='logout' %}current-menu-item{%endif %} "><a href="{{ url_for('main.login') }}">Sign in/Sign up</a></li>
+							{% endif %}
+						</ul> <!-- .menu -->
+
+						
+					</div> <!-- .main-navigation -->
+
+					<div class="mobile-navigation"></div>
+				</div>
+			</header>

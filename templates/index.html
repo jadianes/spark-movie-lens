@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	    {% include 'header.html' %}
+
+	<body>
+		<div id="site-content">
+			    {% include 'header1.html' %}
+            {% if session['ID'] == user_id | string %}
+			<main class="main-content">
+				<div class="container">
+					<div class="page">
+						<div class="row">
+							<div class="col-md-9">
+								<div class="slider">
+									{% if new_user %}
+									<h1> Content based recommendations </h1>
+									{% else %}
+									<h1>Your Watchlist</h1> 
+									{% endif %}	
+								</div>
+							</div>
+							
+						</div> <!-- .row -->
+						<div class="row">
+							<div class="movie-list">
+							{% for p_id, p_info in data.items() %}
+							<div class="movie">
+
+								
+                                <a href="{{ url_for('main.movie_ratings',user_id=user_id,movie_id=p_info['0'],imd_id=p_info['3'],rate=p_info['2']) }}">
+								<figure class="movie-poster"><img src="{{ url_for('main.exturl',imd_id=p_info['3']) }}"> </figure></a>
+								<div class="movie-title"><a href="{{ url_for('main.movie_ratings',user_id=user_id,movie_id=p_info['0'],imd_id=p_info['3'],rate=p_info['2']) }}">{{p_info['1']}}</a></div>
+								<p>Rating:<div class="star-rating" title="{{p_info['2']}} out of 5"><span style="width:{{ p_info['2']*20 }}%"><strong class="rating">{{p_info['2']}}</strong> out of 5</span></div>
+								</p>
+							</div>
+			
+			              {% endfor %}  
+
+			                  {% for p_id, p_info in data1.items() %}
+							<div class="movie">
+
+								
+                                <a href="{{ url_for('main.movie_ratings1',user_id=user_id,movie_id=p_info['movieId'],imd_id=p_info['imdbId']) }}">
+								<figure class="movie-poster"><img src="{{ url_for('main.exturl',imd_id=p_info['imdbId']) }}"> </figure></a>
+								<div class="movie-title"><a href="{{ url_for('main.movie_ratings1',user_id=user_id,movie_id=p_info['movieId'],imd_id=p_info['imdbId']) }}">{{p_info['title']}}</a></div>
+								<p>{{p_info['genres']}}</p>
+							</div>
+			
+			              {% endfor %} 
+
+						</div> <!-- .movie-list -->
+						</div> <!-- .row -->
+						
+						
+					</div>
+				</div> <!-- .container -->
+			</main>
+			{% else %}
+			<center><h1>Requested content is not available.</h1></center>
+			<center><h1>Please Sign in/ Sign up with right credentials.</h1></center>
+			{% endif %}
+			{% include 'footer.html' %}
+			
+
+		</div>
+		<!-- Default snippet for navigation -->
+		
+
+
+		<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+		
+	</body>
+
+</html>
