@@ -1,26 +1,26 @@
 # MovieRec
-This project is a web app for movie website like Netflix where a user is allowed to create an account and watch movies. This web app has mainly focused on the quality of recommendations we make to the user. From the various forms of recommendations we have used some of the most appropriate ones. The user can view the already watched and rated movies in the dashboard. But before that when the user opens the web app he is prompted to login the website if not registered we can as well register. The web app has a nice GUI with every button and field labeled with their respective role. So, the user will not face any difficulty in using the web app.
+This project is a web app for movie websites like Netflix where a user is allowed to create an account and watch movies. This web app has mainly focused on the quality of recommendations we make to the user. From the various forms of recommendations we have used some of the most appropriate ones. The user can view the already watched and rated movies in the dashboard. But before that when the user opens the web app he is prompted to login the website if not registered we can as well register. The web app has a nice GUI with every button and field labeled with their respective role. So, the user will not face any difficulty in using the web app.
 
 ## Welcome to MovieRec
 ![homepage](images/homepage.png) 
 
 ## Login and Register Module 
-This module is what will see first after opening the web app. Here the user is asked to enter the username and password to be able to log in and see the dashboard. If not registered, user can go to the registration page. Where it can fill the detailsand get registered after which certain questions will be asked for solving the “cold start” problem.
+This module is what I will see first after opening the web app. Here the user is asked to enter the username and password to be able to login and see the dashboard. If not registered, users can go to the registration page. Where it can fill the details and get registered after which certain questions will be asked for solving the “cold start” problem.
 
 ![content_based](images/content_based.png) 
 
 ## Watch List Module
-This module basically deals with already registered users where we display the rated movies by the user where user can change the ratings as well. 
+This module basically deals with already registered users where we display the rated movies by the user where users can change the ratings as well.
 
 ![watchlist](images/watchlist.png) 
 
 ## Top K Recommended List Module
-Then there is top K recommended list module which shows the user recommended list of movies based on the user-based collaborative filtering method.
+Then there is a top K recommended list module which shows the user recommended list of movies based on the user-based collaborative filtering method.
 
 ![user_based](images/user_based.png) 
 
 ## Movie Details and Similar Movies Module
-This module is responsible for showing any particular movie details with the predicted ratings. Then there is separate section showing the similar movies based on the attributes and tags using item-item collaborative filtering. This module inherently gets called whenever the user clicks on the movie to see the details.
+This module is responsible for showing any particular movie details with the predicted ratings. Then there is a separate section showing the similar movies based on the attributes and tags using item-item collaborative filtering. This module inherently gets called whenever the user clicks on the movie to see the details.
 
 ![user_based](images/item.png) 
 ![user_based](images/item_based.png) 
