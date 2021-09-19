@@ -125,7 +125,7 @@ Please, refer the the [second notebook](notebooks/online-recommendations.ipynb) 
 
 
 ## Contributing
-
+* [**Ankit Kumar**](https://github.com/TanishQ10)
 Contributions are welcome! Raise a PR :wink:
 
 ## License
