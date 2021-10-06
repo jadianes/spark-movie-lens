@@ -1,0 +1,244 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MovieRec | Sign in | Sign up</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo.png') }}" />
+  <!-- CSS -->
+
+    <title>New User</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='login.css') }}" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+
+
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <div class="py-5 text-center">
+	        <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/logo.png') }}" alt="" width="42" height="42">
+	       
+	     	
+          <h4><span class="text-muted">Sign in to MovieRec</span></h4>
+            
+          </h4>
+         </div>
+
+           <form class="needs-validation"  novalidate action="" method="POST" >
+          <ul class="list-group mb-3">
+             <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName"><span class="text-muted">User ID</span></label>
+                
+              </div>
+              <div class="col-md-6 mb-3">
+              <input type="text" class="form-control"  placeholder="Enter your ID"  value="" name="User_ID1" required>
+              
+              <div class="invalid-feedback">
+                Please enter User ID
+              </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username"><span class="text-muted">Password</span></label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="username" name="password" placeholder="Password" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                 Please enter your password
+               </div>
+              </div>
+            </div>
+            
+          </ul>
+           <button class="btn btn-primary btn-lg btn-block" name="btn" value="submit1">Sign In</button>
+          </form>
+        </div>
+
+        <div class="col-md-8 order-md-1">
+          <div class="py-5 text-center">
+	        <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/1.png') }}" alt="" width="72" height="72">
+	        <h2><span class="text-muted">Join MovieRec</span></h2>
+	      </div>
+          <h4 class="mb-3">Step 1:</h4>
+          <br>
+          <form class="needs-validation" novalidate   method="POST" action="" enctype="multipart/form-data">
+          
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">User ID</label>
+                
+              </div>
+              <div class="col-md-6 mb-3">
+              <input type="text" class="form-control"  placeholder="Enter a number" name="User_ID" required>
+              
+              <div class="invalid-feedback">
+                Please enter User ID
+              </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username">Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="username" name="password_1" placeholder="Password" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                 Please enter your password
+               </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username">Confirm Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="username" name="password_2" placeholder="Re-enter Password" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                 Please re-enter your password
+               </div>                                                                                                                                                                                                                                                
+              </div>
+             </div>
+          <br>
+            <h4 class="mb-3">Step 2:</h4>
+          <br>
+             <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Name</label>
+                
+              </div>
+              <div class="col-md-6 mb-3">
+              <input type="text" class="form-control"  placeholder="Your full name"  name="username" required>
+              
+              <div class="invalid-feedback">
+                Please enter your name.
+              </div>
+              </div>
+            </div>
+
+           <ul class="list-group mb-3">
+             <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div class="col-md-5 mb-3">
+                <label for="country">Select your Genre 1</label>
+                <select class="custom-select d-block w-100" name="value1"> 
+                  <option value="All">All</option> 
+                  <option value="action">Action</option> 
+                  <option value="adventure">Adventure</option> 
+                  <option value="animation">Animation</option> 
+                  <option value="children">Children</option> 
+                  <option value="comedy">Comedy</option> 
+                  <option value="crime">Crime</option> 
+                  <option value="documentary">Documentary</option> 
+                  <option value="drama">Drama</option> 
+                  <option value="fantasy">Fantasy</option> 
+                  <option value="film-Noir">Film-Noir</option> 
+                  <option value="horror">Horror</option> 
+                  <option value="musical">Musical</option>
+                  <option value="mystery">Mystery</option>
+                  <option value="romance">Romance</option>
+                  <option value="sci-Fi">Sci-Fi</option>
+                  <option value="thriller">Thriller</option>
+                  <option value="war">War</option>
+                  <option value="western">Western</option>
+                  
+                 
+              </select> 
+                <div class="invalid-feedback">
+                  Please select a valid genre
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div class="col-md-5 mb-3">
+                <label for="country">Select your Genre 2</label>
+                <select class="custom-select d-block w-100" name="value2"> 
+                  <option value="All">All</option> 
+                  <option value="action">Action</option> 
+                  <option value="adventure">Adventure</option> 
+                  <option value="animation">Animation</option> 
+                  <option value="children">Children</option> 
+                  <option value="comedy">Comedy</option> 
+                  <option value="crime">Crime</option> 
+                  <option value="documentary">Documentary</option> 
+                  <option value="drama">Drama</option> 
+                  <option value="fantasy">Fantasy</option> 
+                  <option value="film-Noir">Film-Noir</option> 
+                  <option value="horror">Horror</option> 
+                  <option value="musical">Musical</option>
+                  <option value="mystery">Mystery</option>
+                  <option value="romance">Romance</option>
+                  <option value="sci-Fi">Sci-Fi</option>
+                  <option value="thriller">Thriller</option>
+                  <option value="war">War</option>
+                  <option value="western">Western</option>
+                  
+                 
+              </select> 
+                <div class="invalid-feedback">
+                  Please select a valid genre
+                </div>
+              </div>
+            </li>
+          </ul>
+             
+
+            
+            <hr class="mb-4">
+         
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info" name="check">
+              <div class="invalid-feedback">
+                Click on this box.
+              </div>
+              <label class="custom-control-label" for="save-info">By clicking Create Account, you agree to our Terms and confirm that you have read our Data Policy, including MovieRec Cookie Use Policy.</label>
+            </div>
+            <br>
+            <button class="btn btn-primary btn-lg btn-block" name="btn" value="submit">Create an account</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2018-2019 MovieRec</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+
+   
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+  </body>
+</html>
+
