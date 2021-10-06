@@ -125,13 +125,12 @@ Please, refer the the [second notebook](notebooks/online-recommendations.ipynb) 
 
 
 ## Contributing
-* [**Ankit Kumar**](https://github.com/TanishQ10)
 Contributions are welcome! Raise a PR :wink:
 
 ## License
 
-The parent repository of this project contains the basic content, which was developed by Jose A. Dianes (2016).
-This project is extended with rich modules by Avinash Yadav.
+The parent repository of this project contains the basic content, which was developed by [**Jose A. Dianes**](https://github.com/jadianes) (2016).
+This project is extended with rich modules by [**Avinash Yadav**](https://github.com/Weirdolucifer) and [**Ankit Kumar**](https://github.com/TanishQ10)
 
 The content developed by Avinash Yadav 
     
